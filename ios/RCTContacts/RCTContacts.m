@@ -136,10 +136,18 @@ RCT_EXPORT_METHOD(getAllWithoutPhotos:(RCTResponseSenderBlock) callback)
 
   if(nickname){
     [contact setObject: (nickname) ? nickname : @"" forKey:@"nickname"];
+    if(!hasName) {
+        [contact setObject: nickname forKey:@"givenName"];
+        hasName = true;
+    }
   }
 
   if(company){
     [contact setObject: (company) ? company : @"" forKey:@"company"];
+    if(!hasName) {
+        [contact setObject: company forKey:@"givenName"];
+        hasName = true;
+    }
   }
 
   if(department){
